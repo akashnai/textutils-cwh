@@ -42,17 +42,17 @@ setText(newtext + text.slice(1,text.length));
             <div className="mb-3">
             <textarea className="form-control" value={text} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'black'}} onChange={handleOnChange} id="MyBox" rows="8"></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-warning mx-2" onClick={handleLowClick}>Convert to Lowercase</button>
-            <button className="btn btn-danger mx-2" onClick={handleClearClick}>Clear</button>
-            <button className="btn btn-success mx-2" onClick={handleTitleClick}>Title First letter</button>
+            <button disabled={text.length===0} className="btn btn-primary m-2" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0} className="btn btn-warning m-2" onClick={handleLowClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} className="btn btn-danger m-2" onClick={handleClearClick}>Clear</button>
+            <button disabled={text.length===0} className="btn btn-success m-2" onClick={handleTitleClick}>Title First letter</button>
     </div>
     <div className="container my-3" style={{color: props.mode==='light'?'black':'white'}}>
         <h1>Your text summary</h1>
-        <p>{text.split(" ").length } and {text.length} characters</p>
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length } and {text.length} characters</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p>
         <h3>Preview</h3>
-        <p>{text.length>0?text:'Enter something in textbox above to preview here'}</p>
+        <p>{text.length>0?text:'Nothing to preview'}</p>
     </div>
     </>
   )
